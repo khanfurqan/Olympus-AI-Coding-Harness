@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Olympus: what it can do for you",
+    "output": ".archify/workflow-olympus-capabilities-20261010-124723/olympus-capabilities.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    { "id": "type", "label": "You type" },
+    { "id": "who", "label": "Who does it" },
+    { "id": "get", "label": "What you get" }
+  ],
+  "phases": [
+    { "id": "p-understand", "label": "Understand", "fromCol": 0, "toCol": 0 },
+    { "id": "p-plan", "label": "Plan", "fromCol": 1, "toCol": 1 },
+    { "id": "p-build", "label": "Build", "fromCol": 2, "toCol": 2 },
+    { "id": "p-review", "label": "Review", "fromCol": 3, "toCol": 3, "variant": "emphasis" },
+    { "id": "p-handover", "label": "Hand over", "fromCol": 4, "toCol": 4 },
+    { "id": "p-learn", "label": "Learn", "fromCol": 5, "toCol": 5 }
+  ],
+  "mainPath": ["c0", "w0", "o0", "o1", "o2", "o3", "o4", "o5"],
+  "nodes": [
+    { "id": "c0", "lane": "type", "col": 0, "type": "frontend", "label": "/explain", "sublabel": "a file or an idea", "width": 150 },
+    { "id": "c1", "lane": "type", "col": 1, "type": "frontend", "label": "/plan-product", "sublabel": "a loose idea", "width": 150 },
+    { "id": "c2", "lane": "type", "col": 2, "type": "frontend", "label": "/test-first", "sublabel": "a behaviour change", "width": 150 },
+    { "id": "c3", "lane": "type", "col": 3, "type": "frontend", "label": "/agentic-review", "sublabel": "before a commit", "width": 150 },
+    { "id": "c4", "lane": "type", "col": 4, "type": "frontend", "label": "/handover", "sublabel": "end of a session", "width": 150 },
+    { "id": "c5", "lane": "type", "col": 5, "type": "frontend", "label": "/learned", "sublabel": "once it clicks", "width": 150 },
+    { "id": "w0", "lane": "who", "col": 0, "type": "backend", "label": "Hermes", "sublabel": "explainer", "width": 150 },
+    { "id": "w1", "lane": "who", "col": 1, "type": "backend", "label": "Athena", "sublabel": "architect", "width": 150 },
+    { "id": "w2", "lane": "who", "col": 2, "type": "backend", "label": "Your chat", "sublabel": "runs the tests", "width": 150 },
+    { "id": "w3", "lane": "who", "col": 3, "type": "security", "label": "Reviewers", "sublabel": "Apollo + up to three", "width": 150 },
+    { "id": "w4", "lane": "who", "col": 4, "type": "backend", "label": "Hestia", "sublabel": "records checker", "width": 150 },
+    { "id": "w5", "lane": "who", "col": 5, "type": "backend", "label": "Your chat", "sublabel": "writes one entry", "width": 150 },
+    { "id": "o0", "lane": "get", "col": 0, "type": "database", "label": "Explanation", "sublabel": "top-down", "width": 150 },
+    { "id": "o1", "lane": "get", "col": 1, "type": "database", "label": "Scoped brief", "sublabel": "with non-goals", "width": 150 },
+    { "id": "o2", "lane": "get", "col": 2, "type": "database", "label": "Proven change", "sublabel": "red, then green", "width": 150 },
+    { "id": "o3", "lane": "get", "col": 3, "type": "database", "label": "One verdict", "sublabel": "fix, accept or rerun", "width": 150 },
+    { "id": "o4", "lane": "get", "col": 4, "type": "database", "label": "Updated records", "sublabel": "next chat starts here", "width": 150 },
+    { "id": "o5", "lane": "get", "col": 5, "type": "database", "label": "LEARNING.md", "sublabel": "in four parts", "width": 150 }
+  ],
+  "edges": [
+    { "id": "c0-w0", "from": "c0", "to": "w0" },
+    { "id": "c1-w1", "from": "c1", "to": "w1" },
+    { "id": "c2-w2", "from": "c2", "to": "w2" },
+    { "id": "c3-w3", "from": "c3", "to": "w3" },
+    { "id": "c4-w4", "from": "c4", "to": "w4" },
+    { "id": "c5-w5", "from": "c5", "to": "w5" },
+    { "id": "w0-o0", "from": "w0", "to": "o0" },
+    { "id": "w1-o1", "from": "w1", "to": "o1" },
+    { "id": "w2-o2", "from": "w2", "to": "o2" },
+    { "id": "w3-o3", "from": "w3", "to": "o3" },
+    { "id": "w4-o4", "from": "w4", "to": "o4" },
+    { "id": "w5-o5", "from": "w5", "to": "o5" },
+    { "id": "o0-o1", "from": "o0", "to": "o1", "variant": "dashed" },
+    { "id": "o1-o2", "from": "o1", "to": "o2", "variant": "dashed" },
+    { "id": "o2-o3", "from": "o2", "to": "o3", "variant": "dashed" },
+    { "id": "o3-o4", "from": "o3", "to": "o4", "variant": "dashed" },
+    { "id": "o4-o5", "from": "o4", "to": "o5", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "slate", "title": "Also available", "items": ["/design-check: Aphrodite, against your design rules", "/review-package: a second opinion from other models", "/new-project: a project folder set up safely", "Two workflows, run only when you ask"] },
+    { "dot": "violet", "title": "Measuring the specialists", "items": ["Hephaestus scores their reports", "Misses go into the ledger", "A replay checks that a fix worked"] }
+  ]
+}

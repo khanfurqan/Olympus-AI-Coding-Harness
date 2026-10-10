@@ -1,0 +1,22 @@
+# Generated output: rebuilt from a source that is tracked here
+graphs/*/graphify-out/
+tools/build/
+
+# Python runtime artefacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Windows and editor clutter
+Thumbs.db
+desktop.ini
+.vscode/
+
+# Machine-local Claude Code permissions, written when a chat opens in this folder
+.claude/settings.local.json
+
+# Archify working folders: drafts and receipts. Keep a finished diagram by saving it elsewhere.
+.archify/
+
+# The release gate's private word list: never published (build_release.py)
+release-private-words.txt

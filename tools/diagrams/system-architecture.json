@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Olympus: where everything lives",
+    "output": ".archify/architecture-olympus-system-20261010-124723/review-2/olympus-system.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "you",
+      "type": "external",
+      "label": "You",
+      "sublabel": "type in plain words",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "prefs",
+      "type": "database",
+      "label": "Your CLAUDE.md",
+      "sublabel": "preferences + ZEUS.md",
+      "pos": [
+        40,
+        540
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "chat",
+      "type": "frontend",
+      "label": "Main chat (Zeus)",
+      "sublabel": "edits files, runs commands",
+      "tag": "the only one that asks you",
+      "pos": [
+        350,
+        300
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "project",
+      "type": "database",
+      "label": "Your project",
+      "sublabel": "code + four record files",
+      "pos": [
+        350,
+        540
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "hooks",
+      "type": "security",
+      "label": "3 hooks",
+      "sublabel": "handover · budget · done gate",
+      "pos": [
+        660,
+        60
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "skills",
+      "type": "backend",
+      "label": "18 commands",
+      "sublabel": "typed with a slash",
+      "pos": [
+        660,
+        300
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "workflows",
+      "type": "backend",
+      "label": "2 workflows",
+      "sublabel": "only when you ask",
+      "pos": [
+        660,
+        540
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "database",
+      "label": "Rules",
+      "sublabel": "shared standards",
+      "pos": [
+        970,
+        60
+      ],
+      "size": [
+        190,
+        66
+      ]
+    },
+    {
+      "id": "agents",
+      "type": "backend",
+      "label": "8 specialists",
+      "sublabel": "read, search, report",
+      "pos": [
+        970,
+        300
+      ],
+      "size": [
+        190,
+        66
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "olympus plugin: one folder",
+      "wraps": [
+        "hooks",
+        "skills",
+        "workflows",
+        "rules",
+        "agents"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "read-only",
+      "wraps": [
+        "agents"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "you-ask",
+      "from": "you",
+      "to": "chat",
+      "label": "plain words",
+      "variant": "emphasis"
+    },
+    {
+      "id": "prefs-read",
+      "from": "prefs",
+      "to": "chat",
+      "label": "read every chat",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "hooks-fire",
+      "from": "hooks",
+      "to": "chat",
+      "label": "start · message · stop",
+      "variant": "security",
+      "fromSide": "left",
+      "toSide": "top"
+    },
+    {
+      "id": "chat-command",
+      "from": "chat",
+      "to": "skills",
+      "label": "runs a command",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "chat-workflow",
+      "from": "chat",
+      "to": "workflows",
+      "label": "on request",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "skills-call",
+      "from": "skills",
+      "to": "agents",
+      "label": "calls"
+    },
+    {
+      "id": "workflow-fan",
+      "from": "workflows",
+      "to": "agents",
+      "label": "fan out",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "id": "agents-rules",
+      "from": "agents",
+      "to": "rules",
+      "label": "read when needed",
+      "variant": "dashed"
+    },
+    {
+      "id": "chat-edits",
+      "from": "chat",
+      "to": "project",
+      "label": "edits, tests, commits",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "How Claude Code finds it",
+      "items": [
+        "The olympus folder loads as one plugin",
+        "A junction at ~\\.claude\\skills\\olympus points to it",
+        "An edit to the folder is live at once"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Who can change what",
+      "items": [
+        "Only the main chat edits files or runs commands",
+        "Specialists read your project and hand back a note",
+        "A command they need comes back under NEEDS_RUN"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "When each part loads",
+      "items": [
+        "CLAUDE.md files: every chat",
+        "Commands: when you type them",
+        "Specialists: refreshed between messages",
+        "Hooks: at start, on each message, at stop"
+      ]
+    }
+  ]
+}

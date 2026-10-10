@@ -1,0 +1,7 @@
+# The Workflow tool refuses a script holding carriage returns, and the system
+# git setting core.autocrlf=true writes them on every checkout. Keep these LF.
+olympus/workflows/*.js text eol=lf
+
+# Archify's own checks compare files byte for byte and break on CRLF (its issue #144).
+# text=auto, not text, so git still detects any binary file and leaves it alone.
+olympus/skills/archify/** text=auto eol=lf

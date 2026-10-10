@@ -1,0 +1,292 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Olympus: what happens to a request",
+    "output": ".archify/workflow-olympus-agentic-20261010-124723/review-2/olympus-agentic.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "you",
+      "label": "You"
+    },
+    {
+      "id": "zeus",
+      "label": "Main chat (Zeus)"
+    },
+    {
+      "id": "spec",
+      "label": "Specialists, read-only"
+    },
+    {
+      "id": "rec",
+      "label": "Project and records"
+    }
+  ],
+  "phases": [
+    {
+      "id": "ask",
+      "label": "Ask",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "plan",
+      "label": "Plan",
+      "fromCol": 2,
+      "toCol": 2
+    },
+    {
+      "id": "build",
+      "label": "Build",
+      "fromCol": 3,
+      "toCol": 3
+    },
+    {
+      "id": "review",
+      "label": "Review",
+      "fromCol": 4,
+      "toCol": 4,
+      "variant": "emphasis"
+    },
+    {
+      "id": "finish",
+      "label": "Finish",
+      "fromCol": 5,
+      "toCol": 5
+    }
+  ],
+  "mainPath": [
+    "ask",
+    "route",
+    "plan",
+    "go",
+    "build",
+    "review",
+    "reviewers",
+    "verdict",
+    "commit",
+    "handover"
+  ],
+  "nodes": [
+    {
+      "id": "ask",
+      "lane": "you",
+      "col": 0,
+      "type": "external",
+      "label": "Ask",
+      "sublabel": "plain words",
+      "width": 150
+    },
+    {
+      "id": "go",
+      "lane": "you",
+      "col": 2,
+      "type": "external",
+      "label": "Say go",
+      "sublabel": "you approve the plan",
+      "width": 150
+    },
+    {
+      "id": "commit",
+      "lane": "you",
+      "col": 5,
+      "type": "external",
+      "label": "Commit?",
+      "sublabel": "you say yes",
+      "width": 150
+    },
+    {
+      "id": "route",
+      "lane": "zeus",
+      "col": 1,
+      "type": "backend",
+      "label": "Route",
+      "sublabel": "ZEUS.md table",
+      "width": 150
+    },
+    {
+      "id": "plan",
+      "lane": "zeus",
+      "col": 2,
+      "type": "backend",
+      "label": "Plan",
+      "sublabel": "files, why, checks",
+      "width": 150
+    },
+    {
+      "id": "build",
+      "lane": "zeus",
+      "col": 3,
+      "type": "backend",
+      "label": "Build",
+      "sublabel": "test first",
+      "width": 150
+    },
+    {
+      "id": "review",
+      "lane": "zeus",
+      "col": 4,
+      "type": "backend",
+      "label": "/agentic-review",
+      "sublabel": "picks reviewers",
+      "width": 150
+    },
+    {
+      "id": "verdict",
+      "lane": "zeus",
+      "col": 5,
+      "type": "security",
+      "label": "Verdict",
+      "sublabel": "fails closed",
+      "width": 150
+    },
+    {
+      "id": "understand",
+      "lane": "spec",
+      "col": 1,
+      "type": "backend",
+      "label": "Hermes · Athena",
+      "sublabel": "explain or scope",
+      "width": 150
+    },
+    {
+      "id": "reviewers",
+      "lane": "spec",
+      "col": 4,
+      "type": "security",
+      "label": "Reviewers",
+      "sublabel": "up to four, in parallel",
+      "width": 150
+    },
+    {
+      "id": "project",
+      "lane": "rec",
+      "col": 3,
+      "type": "database",
+      "label": "Your project",
+      "sublabel": "code + tests",
+      "width": 150
+    },
+    {
+      "id": "handover",
+      "lane": "rec",
+      "col": 5,
+      "type": "database",
+      "label": "/handover",
+      "sublabel": "STATE · DECISIONS",
+      "width": 150
+    }
+  ],
+  "edges": [
+    {
+      "id": "ask-route",
+      "from": "ask",
+      "to": "route"
+    },
+    {
+      "id": "route-understand",
+      "from": "route",
+      "to": "understand",
+      "label": "how? / an idea",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "understand-plan",
+      "from": "understand",
+      "to": "plan",
+      "variant": "dashed"
+    },
+    {
+      "id": "route-plan",
+      "from": "route",
+      "to": "plan",
+      "label": "a change",
+      "variant": "emphasis"
+    },
+    {
+      "id": "plan-go",
+      "from": "plan",
+      "to": "go"
+    },
+    {
+      "id": "go-build",
+      "from": "go",
+      "to": "build",
+      "variant": "emphasis"
+    },
+    {
+      "id": "build-project",
+      "from": "build",
+      "to": "project",
+      "label": "edit + test",
+      "variant": "dashed"
+    },
+    {
+      "id": "build-review",
+      "from": "build",
+      "to": "review",
+      "variant": "emphasis"
+    },
+    {
+      "id": "review-reviewers",
+      "from": "review",
+      "to": "reviewers"
+    },
+    {
+      "id": "reviewers-verdict",
+      "from": "reviewers",
+      "to": "verdict",
+      "label": "findings"
+    },
+    {
+      "id": "verdict-fix",
+      "from": "verdict",
+      "to": "build",
+      "label": "BLOCKING: fix",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "verdict-commit",
+      "from": "verdict",
+      "to": "commit",
+      "label": "CLEAN / ADVISORY",
+      "variant": "emphasis"
+    },
+    {
+      "id": "commit-handover",
+      "from": "commit",
+      "to": "handover",
+      "label": "session ends",
+      "role": "return",
+      "fromSide": "right",
+      "toSide": "right"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Zeus asks you only for",
+      "items": [
+        "go on a plan",
+        "a commit",
+        "the deep review",
+        "anything destructive or leaving the laptop",
+        "a fault two fixes have not cured",
+        "clearing the chat"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Automatic checks",
+      "items": [
+        "Done gate: unreviewed code sends the reply back once",
+        "Context warnings at 50, 75 and 90%",
+        "Handover pointer when a chat opens"
+      ]
+    }
+  ]
+}
