@@ -19,6 +19,8 @@ files **shorter**, not the total volume larger.
 | `olympus:ares-security-reviewer` | `common\security.md`, `common\data-integrity.md`, `common\code-review.md` |
 | The main chat, running the `test-first` skill | `common\testing.md` |
 | The main chat, writing a blueprint in `/plan-product` step 5 | `common\testing.md` |
+| The main chat, running the `new-project` skill | `common\git-workflow.md`, `common\documentation.md` |
+| The main chat, running the `handover` skill | `common\documentation.md` |
 | `olympus:hestia-docs-updater` | `common\documentation.md` |
 | `olympus:hephaestus-agent-evaluator` | `common\code-review.md` |
 | A human | Whichever one is being argued about |
